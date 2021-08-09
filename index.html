@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework Search Engine 05</title>
+
+    <!--BOOTSTRAP-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <!--FONTAWESOME-->
+    <script
+      src="https://kit.fontawesome.com/f235b952ca.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Hind:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--AXIOS-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!--MY CSS-->
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+  <body>
+    <div class="container container-for-app">
+      <header>
+        <!--HEADER BEGIN-->
+        <div class="row">
+          <div class="col current-time">
+            <h2 class="h2Line"></h2>
+            <h1>
+              <span class="hour">11</span>:<span class="minutes">00</span>
+              <!--AM-->
+            </h1>
+          </div>
+          <div class="col">
+            <section>
+              <form class="search-bar-container" id="city-search-bar">
+                <div class="row">
+                  <div class="col">
+                    <div class="mb-3">
+                      <input
+                        type="text"
+                        class="form-control search-bar"
+                        placeholder="Search for Location"
+                      />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <input type="submit" value="🔍" class="magnifying-glass" />
+                    <button class="currentLocation">Current Location</button>
+                  </div>
+                </div>
+              </form>
+            </section>
+          </div>
+        </div>
+      </header>
+      <!--HEADER end-->
+
+      <section>
+        <div class="row">
+          <div class="col">
+            <!--CURRENT TEMP BEGIN-->
+            <h3 class="current-temp-header">
+              Currently in <span class="cityNameC">Toronto</span>
+            </h3>
+            <div class="row">
+              <div class="col temp-number-curr curr">
+                <span class="currentTempNumber">25°C</span>
+                <span class="currWeatherEmoji">⛅</span>
+                <span class="tempSpacingUp">
+                  <button class="celsius">°C</button>
+                  <span class="divider">|</span>
+                  <button class="fahrenheit">°F</button>
+                </span>
+              </div>
+              <!--CURRENT TEMP NUMBER HERE-->
+              <div class="col feels-like-font">
+                Feels Like
+                <div class="row temp-number-curr currFeel">32°C</div>
+                <!--FEELS LIKE CURRENT TEMP NUMBER HERE-->
+              </div>
+            </div>
+
+            <!--ADDITIONAL WEATHER FACTOR NUMBERS-->
+            <section class="factors-container">
+              <div class="row">
+                <div class="col factor-label">
+                  WIND 💨
+                  <div class="row max-margins-variables">
+                    <!--WIND MEASURES-->
+                    <div
+                      class="col remove-padding measure-number wind-speed-curr"
+                    >
+                      5
+                    </div>
+                    <div class="col remove-padding measurement">
+                      NE
+                      <br />
+                      KM
+                    </div>
+                  </div>
+                </div>
+                <div class="col factor-label">
+                  POP ☔
+                  <div class="row max-margins-variables">
+                    <div class="col remove-padding measure-number rain-curr">
+                      15
+                    </div>
+                    <div class="col remove-padding measurement">%</div>
+                  </div>
+                </div>
+                <div class="col factor-label">
+                  LOW <i class="fas fa-thermometer-empty thermo-colour"></i>
+                  <div class="row max-margins-variables">
+                    <div
+                      class="col remove-padding measure-number low-temp-curr"
+                    >
+                      10
+                    </div>
+                    <div class="col remove-padding measurement">°C</div>
+                  </div>
+                </div>
+                <div class="col factor-label">
+                  HIGH 🌡
+                  <div class="row max-margins-variables">
+                    <div
+                      class="col remove-padding measure-number high-temp-curr"
+                    >
+                      30
+                    </div>
+                    <div class="col remove-padding measurement">°C</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="col">
+            <!--TOMORROW TEMP BEGIN-->
+            <h3 class="tomorrow-temp-header">
+              Tomorrow in <span class="cityNameT">Toronto</span>
+            </h3>
+            <div class="row">
+              <div class="col temp-number-tom curr">
+                <span class="currentTempNumberT">30°C</span>
+                <span class="tomWeatherEmoji">☀</span>
+                <span class="tempSpacingUpTom">
+                  <button class="celsiusT">°C</button>
+                  <span class="divider">|</span>
+                  <button class="fahrenheitT">°F</button>
+                </span>
+              </div>
+              <!--TOMORROW TEMP NUMBER HERE-->
+              <div class="col feels-like-font">
+                Feels Like
+                <div class="row temp-number-tom tomFeel">35°C</div>
+                <!--TOMORROW FEELS LIKE TEMP HERE-->
+              </div>
+
+              <section class="factors-container">
+                <div class="row">
+                  <div class="col factor-label tom-label-adjust">
+                    WIND 💨
+                    <div class="row max-margins-variables">
+                      <div class="col measure-number">2</div>
+                      <div class="col measurement">
+                        NE
+                        <br />
+                        KM
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col factor-label">
+                    POP ☔
+                    <div class="row max-margins-variables">
+                      <div class="col remove-padding measure-number">1</div>
+                      <div class="col remove-padding measurement">%</div>
+                    </div>
+                  </div>
+                  <div class="col factor-label">
+                    LOW <i class="fas fa-thermometer-empty thermo-colour"></i>
+                    <div class="row max-margins-variables">
+                      <div class="col remove-padding measure-number">10</div>
+                      <div class="col remove-padding measurement">°C</div>
+                    </div>
+                  </div>
+                  <div class="col factor-label">
+                    HIGH 🌡
+                    <div class="row max-margins-variables">
+                      <div class="col remove-padding measure-number">35</div>
+                      <div class="col remove-padding measurement">°C</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="forecast-container">
+        <h3>7 Day Forecast</h3>
+        <hr />
+        <div class="row">
+          <div class="col day-container forecast-font">
+            MONDAY
+            <p class="status-font">SUNNY</p>
+            <p class="emoji-size">☀</p>
+            <p class="forecast-temp-num">30°C</p>
+            <p class="status-font">HIGH</p>
+            <p class="forecast-temp-num">12°C</p>
+            <p class="status-font">LOW</p>
+          </div>
+          <div class="col day-container forecast-font">
+            TUESDAY
+            <p class="status-font">HAZE</p>
+            <p class="emoji-size">🌫</p>
+            <p class="forecast-temp-num">29°C</p>
+            <p class="status-font">HIGH</p>
+            <p class="forecast-temp-num">13°C</p>
+            <p class="status-font">LOW</p>
+          </div>
+          <div class="col day-container forecast-font">
+            WEDNESDAY
+            <p class="status-font">PARTLY CLOUDY</p>
+            <p class="emoji-size">⛅</p>
+            <p class="forecast-temp-num">25°C</p>
+            <p class="status-font">HIGH</p>
+            <p class="forecast-temp-num">12°C</p>
+            <p class="status-font">LOW</p>
+          </div>
+          <div class="col day-container forecast-font">
+            THURSDAY
+            <p class="status-font">SUNNY</p>
+            <p class="emoji-size">☀</p>
+            <p class="forecast-temp-num">28°C</p>
+            <p class="status-font">HIGH</p>
+            <p class="forecast-temp-num">11°C</p>
+            <p class="status-font">LOW</p>
+          </div>
+          <div class="col day-container forecast-font">
+            FRIDAY
+            <p class="status-font">RAIN</p>
+            <p class="emoji-size">🌧</p>
+            <p class="forecast-temp-num">22°C</p>
+            <p class="status-font">HIGH</p>
+            <p class="forecast-temp-num">10°C</p>
+            <p class="status-font">LOW</p>
+          </div>
+          <div class="col day-container forecast-font">
+            SATURDAY
+            <p class="status-font">T-STORMS</p>
+            <p class="emoji-size">⛈</p>
+            <p class="forecast-temp-num">30°C</p>
+            <p class="status-font">HIGH</p>
+            <p class="forecast-temp-num">15°C</p>
+            <p class="status-font">LOW</p>
+          </div>
+          <div class="col sunday-container forecast-font">
+            SUNDAY
+            <p class="status-font">CLOUDY</p>
+            <p class="emoji-size">☁</p>
+            <p class="forecast-temp-num">19°C</p>
+            <p class="status-font">HIGH</p>
+            <p class="forecast-temp-num">8°C</p>
+            <p class="status-font">LOW</p>
+          </div>
+        </div>
+      </section>
+
+      <script src="js/index.js"></script>
+    </div>
+  </body>
+</html>
