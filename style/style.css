@@ -1,0 +1,295 @@
+h1 {
+  padding: 20px;
+  padding-top: 0;
+  margin-top: 0;
+  font-weight: bolder;
+  font-size: 100pt;
+  text-align: center;
+  font-style: italic;
+  font-family: "Hind", sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: -1px;
+  font-weight: bold;
+  font-size: 30pt;
+  font-family: "Archivo Narrow", sans-serif;
+}
+
+h3 {
+  color: rgb(0, 110, 197);
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: bold;
+  font-size: 32pt;
+}
+
+hr {
+  color: rgb(140, 189, 228);
+  padding: 3px;
+}
+
+.celsius {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 20pt;
+  font-weight: bold;
+  color: rgb(77, 76, 72);
+  padding: 0;
+  transition: all 150ms ease-in-out;
+}
+
+.celsius:hover {
+  color: blue;
+  cursor: pointer;
+  font-size: 25pt;
+}
+
+.fahrenheit {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 20pt;
+  font-weight: bold;
+  color: rgb(77, 76, 72);
+  padding: 0;
+  transition: all 150ms ease-in-out;
+}
+
+.fahrenheit:hover {
+  color: blue;
+  cursor: pointer;
+  font-size: 25pt;
+}
+
+.celsiusT {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 20pt;
+  font-weight: bold;
+  color: rgb(77, 76, 72);
+  padding: 0;
+  transition: all 150ms ease-in-out;
+}
+
+.celsiusT:hover {
+  color: blue;
+  cursor: pointer;
+  font-size: 25pt;
+}
+
+.fahrenheitT {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 20pt;
+  font-weight: bold;
+  color: rgb(77, 76, 72);
+  padding: 0;
+  transition: all 150ms ease-in-out;
+}
+
+.fahrenheitT:hover {
+  color: blue;
+  cursor: pointer;
+  font-size: 25pt;
+}
+
+.divider {
+  font-size: 15pt;
+}
+
+.tempSpacingUp {
+  display: block;
+  margin-top: -50px;
+}
+
+.tempSpacingUpTom {
+  display: block;
+  margin-top: -45px;
+}
+
+.container-for-app {
+  display: block;
+  margin: 0 auto;
+  margin-top: 50px;
+  border: 3px solid rgb(77, 76, 72);
+}
+
+.forecast-container {
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.factors-container {
+  display: block;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.day-container {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  border-right: 2px solid rgb(140, 189, 228);
+}
+
+.sunday-container {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.search-bar-container {
+  display: block;
+  margin: 0px auto;
+  padding: 70px;
+}
+
+.tom-label-adjust {
+  margin-left: 35px;
+}
+
+.remove-padding {
+  padding: 0px;
+}
+
+.thermo-colour {
+  color: rgb(0, 110, 197);
+}
+
+.feels-like-font {
+  color: rgb(0, 110, 197);
+  font-weight: 600;
+  text-align: left;
+  font-size: 20pt;
+  font-family: "Barlow Semi Condensed", sans-serif;
+}
+
+.current-temp-container {
+  margin-left: 20px;
+}
+
+.current-temp-header {
+  margin-left: 40px;
+}
+
+.tomorrow-temp-header {
+  margin-left: 50px;
+}
+
+.current-time {
+  color: rgb(77, 76, 72);
+}
+
+.search-bar {
+  border: 2px solid rgb(77, 76, 72);
+  display: block;
+  margin: 0 auto;
+}
+
+.magnifying-glass {
+  font-size: 16pt;
+  border-radius: 7px;
+  transition: all 150ms ease-in-out;
+}
+
+.magnifying-glass:hover {
+  background-color: rgba(129, 129, 129, 0.555);
+}
+
+.currentLocation {
+  font-size: 16pt;
+  background-color: rgb(0, 110, 197);
+  color: white;
+  border-radius: 7px;
+  transition: all 150ms ease-in-out;
+  font-family: "Barlow Semi Condensed", sans-serif;
+}
+
+.currentLocation:hover {
+  background-color: rgb(51, 131, 192);
+}
+
+.temp-number-curr {
+  color: rgb(77, 76, 72);
+  text-align: center;
+  margin-left: 35px;
+}
+
+.curr {
+  font-size: 45pt;
+  font-weight: 700;
+}
+
+.currFeel {
+  font-weight: 600;
+  font-size: 25pt;
+}
+
+.tomFeel {
+  font-weight: 600;
+  font-size: 25pt;
+}
+
+.temp-number-tom {
+  color: rgb(77, 76, 72);
+  text-align: center;
+  margin-left: 40px;
+}
+
+.grid {
+  display: inline-grid;
+}
+
+.max-margins-variables {
+  max-width: 75%;
+  text-align: center;
+  margin-left: 26px;
+}
+
+.factor-label {
+  color: rgb(56, 119, 170);
+  font-weight: 500;
+  text-align: center;
+  font-size: 18pt;
+}
+
+.measure-number {
+  font-size: 18pt;
+  font-weight: 700;
+  color: rgb(77, 76, 72);
+  font-family: "Barlow Semi Condensed", sans-serif;
+}
+
+.measurement {
+  font-size: 14pt;
+  font-weight: 500;
+  color: rgb(77, 76, 72);
+  font-family: "Barlow Semi Condensed", sans-serif;
+}
+
+.forecast-font {
+  color: rgb(56, 119, 170);
+  font-weight: 500;
+  font-size: 15pt;
+}
+
+.forecast-temp-num {
+  color: rgb(77, 76, 72);
+  font-size: 15pt;
+  margin: 0 auto;
+  font-family: "Barlow Semi Condensed", sans-serif;
+}
+
+.status-font {
+  font-size: 13pt;
+  font-weight: 500;
+  margin: 0 auto;
+  font-family: "Barlow Semi Condensed", sans-serif;
+}
+
+.emoji-size {
+  font-size: 24pt;
+  margin: 0 auto;
+}
