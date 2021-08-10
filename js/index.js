@@ -10,10 +10,12 @@ function getCurrentLocation(response) {
   console.log(latitude);
   let longitude = response.coords.longitude;
   let units = "metric";
-  let cnt = 7;
+  let cnt = 8;
 
-  let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&cnt=${cnt}&appid=${weatherApiKey}&units=${units}`;
+  let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=${units}`;
+  let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&cnt=${cnt}&units=${units}`;
   console.log(weatherUrl);
+  console.log(forecastUrl);
 
   //GET TEMP BASED ON COORDINATES
 
@@ -38,9 +40,6 @@ function getCurrentLocation(response) {
       temp.data.main.feels_like
     )}°C`;
 
-    let updateTomWeatherTemp = document.querySelector(".currentTempNumberT");
-    updateTomWeatherTemp.innerHTML = `${Math.round(temp.data.main.temp)}°C`;
-
     let updateWindSpeedCurr = document.querySelector(".wind-speed-curr");
     updateWindSpeedCurr.innerHTML = Math.round(temp.data.wind.speed);
 
@@ -54,8 +53,6 @@ function getCurrentLocation(response) {
     let updateHighTempCurr = document.querySelector(".high-temp-curr");
     updateHighTempCurr.innerHTML = Math.round(temp.data.main.temp_max);
 
-    //TOMORROW TEMPS
-
     //CONVERT C to F
 
     let celsiusButton = document.querySelector(".celsius");
@@ -66,6 +63,57 @@ function getCurrentLocation(response) {
       celsiusUpdate.innerHTML = `${Math.round(temp.data.main.temp)}°C`;
     }
 
+    //TOMORROW TEMPS FORECAST
+
+    function getForecast(data) {
+      console.log(data);
+
+      let updateTomWeatherTemp = document.querySelector(".currentTempNumberT");
+      updateTomWeatherTemp.innerHTML = `${Math.round(
+        data.data.list[0].main.temp
+      )}°C`;
+
+      let updateTomFeelsTemp = document.querySelector(".tom-Feel");
+      updateTomFeelsTemp.innerHTML = `${Math.round(
+        data.data.list[0].main.feels_like
+      )}°C`;
+
+      let updateTomWindSpeed = document.querySelector(".tom-wind-speed");
+      updateTomWindSpeed.innerHTML = Math.round(data.data.list[0].wind.speed);
+
+      let updateRainfall = document.querySelector(".tom-rainfall");
+      updateRainfall.innerHTML = Math.trunc(data.data.list[0].pop * 100);
+
+      let updateTomLowTemp = document.querySelector(".tom-low-temp");
+      updateTomLowTemp.innerHTML = Math.round(data.data.list[0].main.temp_min);
+
+      let updateTomHighTemp = document.querySelector(".tom-high-temp");
+      updateTomHighTemp.innerHTML = Math.round(data.data.list[0].main.temp_max);
+
+      //TOMORROW C & F
+      let celsiusButtonT = document.querySelector(".celsiusT");
+      let fahrenheitButtonT = document.querySelector(".fahrenheitT");
+
+      function updateCelsiusT() {
+        let celsiusUpdate = document.querySelector(".currentTempNumberT");
+        celsiusUpdate.innerHTML = `${Math.round(
+          data.data.list[0].main.temp
+        )}°C`;
+      }
+
+      function updateFahrenheitT() {
+        let fahrenheitUpdate = document.querySelector(".currentTempNumberT");
+        let convertFahrenheitTemp =
+          Math.round(data.data.list[0].main.temp) * 1.8 + 32;
+        fahrenheitUpdate.innerHTML = `${Math.round(convertFahrenheitTemp)}°F`;
+      }
+
+      celsiusButtonT.addEventListener("click", updateCelsiusT);
+      fahrenheitButtonT.addEventListener("click", updateFahrenheitT);
+    }
+
+    axios.get(forecastUrl).then(getForecast);
+
     function updateFahrenheit() {
       let fahrenheitUpdate = document.querySelector(".currentTempNumber");
       let convertFahrenheitTemp = Math.round(temp.data.main.temp) * 1.8 + 32;
@@ -74,24 +122,6 @@ function getCurrentLocation(response) {
 
     celsiusButton.addEventListener("click", updateCelsius);
     fahrenheitButton.addEventListener("click", updateFahrenheit);
-
-    //TOMORROW C & F
-    let celsiusButtonT = document.querySelector(".celsiusT");
-    let fahrenheitButtonT = document.querySelector(".fahrenheitT");
-
-    function updateCelsiusT() {
-      let celsiusUpdate = document.querySelector(".currentTempNumberT");
-      celsiusUpdate.innerHTML = `${Math.round(temp.data.main.temp)}°C`;
-    }
-
-    function updateFahrenheitT() {
-      let fahrenheitUpdate = document.querySelector(".currentTempNumberT");
-      let convertFahrenheitTemp = Math.round(temp.data.main.temp) * 1.8 + 32;
-      fahrenheitUpdate.innerHTML = `${Math.round(convertFahrenheitTemp)}°F`;
-    }
-
-    celsiusButtonT.addEventListener("click", updateCelsiusT);
-    fahrenheitButtonT.addEventListener("click", updateFahrenheitT);
   }
 
   axios.get(weatherUrl).then(getTemp);
@@ -223,8 +253,10 @@ function displayCity(event) {
   let units = "metric";
   let cnt = 7;
 
-  let weatherSearchedUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputEntry}&appid=${weatherApiKeySearched}&units=${units}&cnt=${cnt}`;
+  let weatherSearchedUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputEntry}&appid=${weatherApiKeySearched}&units=${units}`;
+  let forecastSearchedUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${inputEntry}&appid=${weatherApiKeySearched}&units=${units}&cnt=${cnt}`;
   console.log(weatherSearchedUrl);
+  console.log(forecastSearchedUrl);
 
   //GET TEMP BASED ON SEARCH INPUT FIELD
 
@@ -254,8 +286,6 @@ function displayCity(event) {
     let updateHighTempCurr = document.querySelector(".high-temp-curr");
     updateHighTempCurr.innerHTML = Math.round(temp.data.main.temp_max);
 
-    //TOMORROW TEMPS
-
     //CURRENT C & F BUTTONS
 
     let celsiusButton = document.querySelector(".celsius");
@@ -274,6 +304,36 @@ function displayCity(event) {
 
     celsiusButton.addEventListener("click", updateCelsius);
     fahrenheitButton.addEventListener("click", updateFahrenheit);
+  }
+
+  axios.get(weatherSearchedUrl).then(getTemp);
+
+  //TOMORROW TEMPS SEARCHED
+
+  function getTomTemps(data) {
+    console.log(data);
+
+    let updateTomWeatherTemp = document.querySelector(".currentTempNumberT");
+    updateTomWeatherTemp.innerHTML = `${Math.round(
+      data.data.list[0].main.temp
+    )}°C`;
+
+    let updateTomFeelsTemp = document.querySelector(".tom-Feel");
+    updateTomFeelsTemp.innerHTML = `${Math.round(
+      data.data.list[0].main.feels_like
+    )}°C`;
+
+    let updateTomWindSpeed = document.querySelector(".tom-wind-speed");
+    updateTomWindSpeed.innerHTML = Math.round(data.data.list[0].wind.speed);
+
+    let updateRainfall = document.querySelector(".tom-rainfall");
+    updateRainfall.innerHTML = Math.trunc(data.data.list[0].pop * 100);
+
+    let updateTomLowTemp = document.querySelector(".tom-low-temp");
+    updateTomLowTemp.innerHTML = Math.round(data.data.list[0].main.temp_min);
+
+    let updateTomHighTemp = document.querySelector(".tom-high-temp");
+    updateTomHighTemp.innerHTML = Math.round(data.data.list[0].main.temp_max);
 
     //TOMORROW C & F BUTTONS
 
@@ -281,21 +341,23 @@ function displayCity(event) {
     let fahrenheitButtonT = document.querySelector(".fahrenheitT");
 
     function updateCelsiusT() {
-      let celsiusUpdate = document.querySelector(".currentTempNumberT");
-      celsiusUpdate.innerHTML = `${Math.round(temp.data.main.temp)}°C`;
+      let celsiusUpdateT = document.querySelector(".currentTempNumberT");
+      celsiusUpdateT.innerHTML = `${Math.round(data.data.list[0].main.temp)}°C`;
+      console.log(celsiusUpdateT);
     }
 
     function updateFahrenheitT() {
-      let fahrenheitUpdate = document.querySelector(".currentTempNumberT");
-      let convertFahrenheitTemp = Math.round(temp.data.main.temp) * 1.8 + 32;
-      fahrenheitUpdate.innerHTML = `${Math.round(convertFahrenheitTemp)}°F`;
+      let fahrenheitUpdateT = document.querySelector(".currentTempNumberT");
+      let convertFahrenheitTemp =
+        Math.round(data.data.list[0].main.temp) * 1.8 + 32;
+      fahrenheitUpdateT.innerHTML = `${Math.round(convertFahrenheitTemp)}°F`;
     }
 
     celsiusButtonT.addEventListener("click", updateCelsiusT);
     fahrenheitButtonT.addEventListener("click", updateFahrenheitT);
   }
 
-  axios.get(weatherSearchedUrl).then(getTemp);
+  axios.get(forecastSearchedUrl).then(getTomTemps);
 
   //UPDATE CURRENT EMOJI WEATHER SEARCHED
 
