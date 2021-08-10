@@ -75,12 +75,13 @@ function getCurrentLocation(response) {
 
     function updateCelsiusT() {
       let celsiusUpdate = document.querySelector(".currentTempNumberT");
-      celsiusUpdate.innerHTML = "30°C";
+      celsiusUpdate.innerHTML = `${Math.round(temp.data.main.temp)}°C`;
     }
 
     function updateFahrenheitT() {
       let fahrenheitUpdate = document.querySelector(".currentTempNumberT");
-      fahrenheitUpdate.innerHTML = "86°F";
+      let convertFahrenheitTemp = Math.round(temp.data.main.temp) * 1.8 + 32;
+      fahrenheitUpdate.innerHTML = `${Math.round(convertFahrenheitTemp)}°F`;
     }
 
     celsiusButtonT.addEventListener("click", updateCelsiusT);
@@ -180,8 +181,6 @@ function displayCity(event) {
   //GET TEMP BASED ON SEARCH INPUT FIELD
 
   function getTemp(temp) {
-    console.log(temp);
-
     let updateCurrWeatherTemp = document.querySelector(".currentTempNumber");
     updateCurrWeatherTemp.innerHTML = `${Math.round(temp.data.main.temp)}°C`;
 
@@ -205,8 +204,7 @@ function displayCity(event) {
 
     let celsiusUpdateButton = `${Math.round(temp.data.main.temp)}°C`;
 
-    //let updateTomWeatherTemp = document.querySelector(".currentTempNumberT");
-    //updateTomWeatherTemp.innerHTML = `${Math.round(temp.data.main.temp)}°C`;
+    //CURRENT C & F BUTTONS
 
     let celsiusButton = document.querySelector(".celsius");
     let fahrenheitButton = document.querySelector(".fahrenheit");
@@ -225,19 +223,20 @@ function displayCity(event) {
     celsiusButton.addEventListener("click", updateCelsius);
     fahrenheitButton.addEventListener("click", updateFahrenheit);
 
-    //TOMORROW C & F
+    //TOMORROW C & F BUTTONS
 
     let celsiusButtonT = document.querySelector(".celsiusT");
     let fahrenheitButtonT = document.querySelector(".fahrenheitT");
 
     function updateCelsiusT() {
       let celsiusUpdate = document.querySelector(".currentTempNumberT");
-      celsiusUpdate.innerHTML = "30°C";
+      celsiusUpdate.innerHTML = `${Math.round(temp.data.main.temp)}°C`;
     }
 
     function updateFahrenheitT() {
       let fahrenheitUpdate = document.querySelector(".currentTempNumberT");
-      fahrenheitUpdate.innerHTML = "86°F";
+      let convertFahrenheitTemp = Math.round(temp.data.main.temp) * 1.8 + 32;
+      fahrenheitUpdate.innerHTML = `${Math.round(convertFahrenheitTemp)}°F`;
     }
 
     celsiusButtonT.addEventListener("click", updateCelsiusT);
