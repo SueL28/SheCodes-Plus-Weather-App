@@ -17,6 +17,8 @@ function getCurrentLocation(response) {
 
   //GET TEMP BASED ON COORDINATES
 
+  //CURRENT TEMPS
+
   function getTemp(temp) {
     console.log(temp);
     let updateCityName = document.querySelector(".cityNameC");
@@ -51,6 +53,8 @@ function getCurrentLocation(response) {
 
     let updateHighTempCurr = document.querySelector(".high-temp-curr");
     updateHighTempCurr.innerHTML = Math.round(temp.data.main.temp_max);
+
+    //TOMORROW TEMPS
 
     //CONVERT C to F
 
@@ -94,8 +98,9 @@ function getCurrentLocation(response) {
 
   //UPDATE EMOJI BASED ON WEATHER STATUS IN API CURRENT LOCATION BUTTON
 
+  //UPDATE CURRENT
   function emojiUpdate(emoji) {
-    let updateCurrWeatherEmoji = document.querySelector("#currWeatherEmoji");
+    let updateCurrWeatherEmoji = document.querySelector("#curr-weather-emoji");
 
     updateCurrWeatherEmoji.innerHTML = emoji.data.weather[0].icon;
     let updateEmojiIcon = emoji.data.weather[0].icon;
@@ -106,7 +111,25 @@ function getCurrentLocation(response) {
 
     updateCurrWeatherEmoji.setAttribute("alt", emoji.data.weather[0].main);
   }
+
+  //UPDATE TOMORROW
+
+  function emojiUpdateT(emoji) {
+    let updateTomWeatherEmoji = document.querySelector("#tom-weather-emoji");
+    console.log(emoji.data.weather[0].main);
+
+    updateTomWeatherEmoji.innerHTML = emoji.data.weather[0].icon;
+    let updateEmojiIcon = emoji.data.weather[0].icon;
+    updateTomWeatherEmoji.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${updateEmojiIcon}@2x.png`
+    );
+
+    updateTomWeatherEmoji.setAttribute("alt", emoji.data.weather[0].main);
+  }
+
   axios.get(weatherUrl).then(emojiUpdate);
+  axios.get(weatherUrl).then(emojiUpdateT);
 }
 
 function updateWeather() {
@@ -152,7 +175,6 @@ let currentWeekday = weekdays[currentDate.getDay()];
 let currentDay = currentDate.getDate();
 
 let formatDate = `${currentWeekday} ${currentMonth} ${currentDay}`;
-console.log(formatDate);
 
 let updateCurrentWeekday = document.querySelector(".h2Line");
 updateCurrentWeekday.innerHTML = formatDate;
@@ -206,6 +228,7 @@ function displayCity(event) {
 
   //GET TEMP BASED ON SEARCH INPUT FIELD
 
+  //CURRENT TEMPS
   function getTemp(temp) {
     let updateWeatherStatus = document.querySelector(".weather-status");
     updateWeatherStatus.innerHTML = temp.data.weather[0].main;
@@ -231,7 +254,7 @@ function displayCity(event) {
     let updateHighTempCurr = document.querySelector(".high-temp-curr");
     updateHighTempCurr.innerHTML = Math.round(temp.data.main.temp_max);
 
-    let celsiusUpdateButton = `${Math.round(temp.data.main.temp)}°C`;
+    //TOMORROW TEMPS
 
     //CURRENT C & F BUTTONS
 
@@ -274,23 +297,39 @@ function displayCity(event) {
 
   axios.get(weatherSearchedUrl).then(getTemp);
 
-  //UPDATE EMOJI TO BE AUTO UPDATE WITH DATA IN API
+  //UPDATE CURRENT EMOJI WEATHER SEARCHED
 
-  function emojiUpdateT(emoji) {
-    let updatecurrWeatherEmoji = document.querySelector("#currWeatherEmoji");
-    console.log(emoji.data.weather[0].main);
+  function emojiUpdate(emoji) {
+    let updateCurrWeatherEmoji = document.querySelector("#curr-weather-emoji");
 
-    updatecurrWeatherEmoji.innerHTML = emoji.data.weather[0].icon;
+    updateCurrWeatherEmoji.innerHTML = emoji.data.weather[0].icon;
     let updateEmojiIcon = emoji.data.weather[0].icon;
-    updatecurrWeatherEmoji.setAttribute(
+    updateCurrWeatherEmoji.setAttribute(
       "src",
       `http://openweathermap.org/img/wn/${updateEmojiIcon}@2x.png`
     );
 
-    updatecurrWeatherEmoji.setAttribute("alt", emoji.data.weather[0].main);
+    updateCurrWeatherEmoji.setAttribute("alt", emoji.data.weather[0].main);
+  }
+
+  //UPDATE EMOJI TO BE AUTO UPDATE WITH DATA IN API SEARCHED
+
+  function emojiUpdateT(emoji) {
+    let updateTomWeatherEmoji = document.querySelector("#tom-weather-emoji");
+    console.log(emoji.data.weather[0].main);
+
+    updateTomWeatherEmoji.innerHTML = emoji.data.weather[0].icon;
+    let updateEmojiIcon = emoji.data.weather[0].icon;
+    updateTomWeatherEmoji.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${updateEmojiIcon}@2x.png`
+    );
+
+    updateTomWeatherEmoji.setAttribute("alt", emoji.data.weather[0].main);
   }
 
   axios.get(weatherSearchedUrl).then(emojiUpdateT);
+  axios.get(weatherSearchedUrl).then(emojiUpdate);
 }
 
 citySearch.addEventListener("submit", displayCity);
