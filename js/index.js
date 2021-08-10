@@ -292,6 +292,14 @@ function displayCity(event) {
     let updatecurrWeatherEmoji = document.querySelector(".currWeatherEmoji");
     console.log(emoji.data.weather[0].main);
 
+    /* 
+    updatecurrWeatherEmoji.innerHTML = emoji.data.weather[0].icon;
+    let updateEmojiIcon = emoji.data.weather[0].icon;
+    updatecurrWeatherEmoji.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${updateEmojiIcon}@2x.png`
+    ); */
+
     if (emoji.data.weather[0].main === "Clouds") {
       updatecurrWeatherEmoji.innerHTML = "☁";
     }

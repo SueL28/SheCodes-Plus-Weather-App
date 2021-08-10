@@ -50,6 +50,7 @@ a {
 
 a:hover {
   color: rgb(140, 189, 228);
+  text-decoration: underline;
 }
 
 .celsius {
