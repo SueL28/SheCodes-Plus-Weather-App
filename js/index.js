@@ -19,12 +19,14 @@ function getCurrentLocation(response) {
 
   function getTemp(temp) {
     console.log(temp);
-
     let updateCityName = document.querySelector(".cityNameC");
     updateCityName.innerHTML = temp.data.name;
 
     let updateCityNameT = document.querySelector(".cityNameT");
     updateCityNameT.innerHTML = temp.data.name;
+
+    let updateWeatherStatus = document.querySelector(".weather-status");
+    updateWeatherStatus.innerHTML = temp.data.weather[0].main;
 
     let updateCurrWeatherTemp = document.querySelector(".currentTempNumber");
     updateCurrWeatherTemp.innerHTML = `${Math.round(temp.data.main.temp)}°C`;
@@ -114,7 +116,26 @@ function updateWeather() {
 let checkCurrentPos = document.querySelector(".currentLocation");
 checkCurrentPos.addEventListener("click", updateWeather);
 
+//GET AND FORMAT CURRENT DATE
+
 let currentDate = new Date();
+
+let months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+let currentMonth = months[currentDate.getMonth()];
 
 let weekdays = [
   "Sunday",
@@ -128,8 +149,13 @@ let weekdays = [
 
 let currentWeekday = weekdays[currentDate.getDay()];
 
+let currentDay = currentDate.getDate();
+
+let formatDate = `${currentWeekday} ${currentMonth} ${currentDay}`;
+console.log(formatDate);
+
 let updateCurrentWeekday = document.querySelector(".h2Line");
-updateCurrentWeekday.innerHTML = currentWeekday;
+updateCurrentWeekday.innerHTML = formatDate;
 
 //TIME LIVE UPDATE
 let currentHour = currentDate.getHours();
@@ -181,6 +207,9 @@ function displayCity(event) {
   //GET TEMP BASED ON SEARCH INPUT FIELD
 
   function getTemp(temp) {
+    let updateWeatherStatus = document.querySelector(".weather-status");
+    updateWeatherStatus.innerHTML = temp.data.weather[0].main;
+
     let updateCurrWeatherTemp = document.querySelector(".currentTempNumber");
     updateCurrWeatherTemp.innerHTML = `${Math.round(temp.data.main.temp)}°C`;
 
