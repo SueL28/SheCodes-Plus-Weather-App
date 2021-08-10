@@ -1,8 +1,6 @@
 console.log(axios);
 
-//ONLY THE CURRENT TEMP UPDATES COULDN'T GET FUTURE FORECAST TO DISPLAY DATA
-
-//BONUS CHALLENGE
+// GET LOCATION BUTTON FUNCTION
 
 function getCurrentLocation(response) {
   console.log(response);
@@ -91,60 +89,19 @@ function getCurrentLocation(response) {
 
   axios.get(weatherUrl).then(getTemp);
 
-  //UPDATE EMOJI BASED ON WEATHER STATUS
+  //UPDATE EMOJI BASED ON WEATHER STATUS IN API CURRENT LOCATION BUTTON
 
   function emojiUpdate(emoji) {
-    let updateCurrWeatherEmoji = document.querySelector(".currWeatherEmoji");
-    console.log(emoji.data.weather[0].main);
+    let updateCurrWeatherEmoji = document.querySelector("#currWeatherEmoji");
 
-    if (emoji.data.weather[0].main === "Clouds") {
-      updateCurrWeatherEmoji.innerHTML = "☁";
-    }
-    if (emoji.data.weather[0].main === "Scattered Clouds") {
-      updateCurrWeatherEmoji.innerHTML = "☁";
-    }
-    if (emoji.data.weather[0].main === "Partly Cloudy") {
-      updateCurrWeatherEmoji.innerHTML = "⛅";
-    }
-    if (emoji.data.weather[0].main === "Rain") {
-      updateCurrWeatherEmoji.innerHTML = "🌧";
-    }
-    if (emoji.data.weather[0].main === "Light Rain") {
-      updateCurrWeatherEmoji.innerHTML = "🌧";
-    }
-    if (emoji.data.weather[0].main === "Drizzle") {
-      updateCurrWeatherEmoji.innerHTML = "🌧";
-    }
-    if (emoji.data.weather[0].main === "Thunderstorm || Light Thunderstorm") {
-      updateCurrWeatherEmoji.innerHTML = "⛈";
-    }
-    if (emoji.data.weather[0].main === "Light Thunderstorm") {
-      updateCurrWeatherEmoji.innerHTML = "⛈";
-    }
-    if (emoji.data.weather[0].main === "Sunny") {
-      updateCurrWeatherEmoji.innerHTML = "☀";
-    }
-    if (emoji.data.weather[0].main === "Clear") {
-      updateCurrWeatherEmoji.innerHTML = "☀";
-    }
-    if (emoji.data.weather[0].main === "Clear Sky") {
-      updateCurrWeatherEmoji.innerHTML = "☀";
-    }
-    if (emoji.data.weather[0].main === "Snow") {
-      updateCurrWeatherEmoji.innerHTML = "🌨";
-    }
-    if (emoji.data.weather[0].main === "Atmosphere") {
-      updateCurrWeatherEmoji.innerHTML = "🌫️";
-    }
-    if (emoji.data.weather[0].main === "Fog") {
-      updateCurrWeatherEmoji.innerHTML = "🌫️";
-    }
-    if (emoji.data.weather[0].main === "Mist") {
-      updateCurrWeatherEmoji.innerHTML = "🌫️";
-    }
-    if (emoji.data.weather[0].main === "Haze") {
-      updateCurrWeatherEmoji.innerHTML = "🌫️";
-    }
+    updateCurrWeatherEmoji.innerHTML = emoji.data.weather[0].icon;
+    let updateEmojiIcon = emoji.data.weather[0].icon;
+    updateCurrWeatherEmoji.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${updateEmojiIcon}@2x.png`
+    );
+
+    updateCurrWeatherEmoji.setAttribute("alt", emoji.data.weather[0].main);
   }
   axios.get(weatherUrl).then(emojiUpdate);
 }
@@ -288,66 +245,20 @@ function displayCity(event) {
 
   axios.get(weatherSearchedUrl).then(getTemp);
 
+  //UPDATE EMOJI TO BE AUTO UPDATE WITH DATA IN API
+
   function emojiUpdateT(emoji) {
-    let updatecurrWeatherEmoji = document.querySelector(".currWeatherEmoji");
+    let updatecurrWeatherEmoji = document.querySelector("#currWeatherEmoji");
     console.log(emoji.data.weather[0].main);
 
-    /* 
     updatecurrWeatherEmoji.innerHTML = emoji.data.weather[0].icon;
     let updateEmojiIcon = emoji.data.weather[0].icon;
     updatecurrWeatherEmoji.setAttribute(
       "src",
       `http://openweathermap.org/img/wn/${updateEmojiIcon}@2x.png`
-    ); */
+    );
 
-    if (emoji.data.weather[0].main === "Clouds") {
-      updatecurrWeatherEmoji.innerHTML = "☁";
-    }
-    if (emoji.data.weather[0].main === "Scattered Clouds") {
-      updatecurrWeatherEmoji.innerHTML = "☁";
-    }
-    if (emoji.data.weather[0].main === "Partly Cloudy") {
-      updatecurrWeatherEmoji.innerHTML = "⛅";
-    }
-    if (emoji.data.weather[0].main === "Rain") {
-      updatecurrWeatherEmoji.innerHTML = "🌧";
-    }
-    if (emoji.data.weather[0].main === "Light Rain") {
-      updatecurrWeatherEmoji.innerHTML = "🌧";
-    }
-    if (emoji.data.weather[0].main === "Drizzle") {
-      updatecurrWeatherEmoji.innerHTML = "🌧";
-    }
-    if (emoji.data.weather[0].main === "Thunderstorm || Light Thunderstorm") {
-      updatecurrWeatherEmoji.innerHTML = "⛈";
-    }
-    if (emoji.data.weather[0].main === "Light Thunderstorm") {
-      updatecurrWeatherEmoji.innerHTML = "⛈";
-    }
-    if (emoji.data.weather[0].main === "Sunny") {
-      updatecurrWeatherEmoji.innerHTML = "☀";
-    }
-    if (emoji.data.weather[0].main === "Clear") {
-      updatecurrWeatherEmoji.innerHTML = "☀";
-    }
-    if (emoji.data.weather[0].main === "Clear Sky") {
-      updatecurrWeatherEmoji.innerHTML = "☀";
-    }
-    if (emoji.data.weather[0].main === "Snow") {
-      updatecurrWeatherEmoji.innerHTML = "🌨";
-    }
-    if (emoji.data.weather[0].main === "Atmosphere") {
-      updatecurrWeatherEmoji.innerHTML = "🌫️";
-    }
-    if (emoji.data.weather[0].main === "Fog") {
-      updatecurrWeatherEmoji.innerHTML = "🌫️";
-    }
-    if (emoji.data.weather[0].main === "Mist") {
-      updatecurrWeatherEmoji.innerHTML = "🌫️";
-    }
-    if (emoji.data.weather[0].main === "Haze") {
-      updatecurrWeatherEmoji.innerHTML = "🌫️";
-    }
+    updatecurrWeatherEmoji.setAttribute("alt", emoji.data.weather[0].main);
   }
 
   axios.get(weatherSearchedUrl).then(emojiUpdateT);
