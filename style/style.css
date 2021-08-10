@@ -61,6 +61,8 @@ a:hover {
   text-decoration: underline;
 }
 
+/* CONVERSION C & F */
+
 .celsius {
   border: none;
   background-color: rgba(255, 255, 255, 0);
@@ -125,6 +127,8 @@ a:hover {
   font-size: 25pt;
 }
 
+/*HEADER SPACING OF CURR AND TOM */
+
 .divider {
   font-size: 15pt;
 }
@@ -139,6 +143,8 @@ a:hover {
   margin-top: -45px;
 }
 
+/* CONTAINERS */
+
 .container-for-app {
   display: block;
   margin: 0 auto;
@@ -146,6 +152,10 @@ a:hover {
   border: 3px solid rgb(77, 76, 72);
   border-radius: 9px;
   /* background-color: rgb(228, 228, 228); */
+}
+
+.current-temp-container {
+  margin-left: 20px;
 }
 
 .forecast-container {
@@ -179,8 +189,40 @@ a:hover {
   padding: 70px;
 }
 
+/*CURRENT FACTORS WIND POP ETC */
+
+.curr-wind-adjust {
+  margin-left: 5px;
+}
+
+.curr-pop-label-adjust {
+  margin-left: -60px;
+}
+
+.curr-low-label-adjust {
+  margin-left: -80px;
+}
+
+.curr-high-label-adjust {
+  margin-left: -80px;
+}
+
+/*TOMORROW FACTORS WIND POP ETC */
+
 .tom-label-adjust {
-  margin-left: 35px;
+  margin-left: 22px;
+}
+
+.tom-pop-label-adjust {
+  margin-left: -60px;
+}
+
+.tom-low-temp-adjust {
+  margin-left: -85px;
+}
+
+.tom-high-label-adjust {
+  margin-left: -90px;
 }
 
 .remove-padding {
@@ -199,9 +241,7 @@ a:hover {
   font-family: "Barlow Semi Condensed", sans-serif;
 }
 
-.current-temp-container {
-  margin-left: 20px;
-}
+/*HEADERS OF TOP ELEMENTS*/
 
 .current-temp-header {
   margin-left: 40px;
@@ -214,6 +254,8 @@ a:hover {
 .current-time {
   color: rgb(77, 76, 72);
 }
+
+/*SEARCH BAR */
 
 .search-bar {
   border: 2px solid rgb(77, 76, 72);
@@ -243,6 +285,8 @@ a:hover {
 .currentLocation:hover {
   background-color: rgb(51, 131, 192);
 }
+
+/* GENERAL CSS FORMATING */
 
 .temp-number-curr {
   color: rgb(77, 76, 72);
@@ -300,6 +344,15 @@ a:hover {
   font-weight: 500;
   color: rgb(77, 76, 72);
   font-family: "Barlow Semi Condensed", sans-serif;
+  margin-left: -75px;
+}
+
+.measurement-tom {
+  font-size: 14pt;
+  font-weight: 500;
+  color: rgb(77, 76, 72);
+  font-family: "Barlow Semi Condensed", sans-serif;
+  margin-left: -60px;
 }
 
 .forecast-font {
