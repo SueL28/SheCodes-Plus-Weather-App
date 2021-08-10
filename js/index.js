@@ -226,6 +226,7 @@ function displayCity(event) {
     fahrenheitButton.addEventListener("click", updateFahrenheit);
 
     //TOMORROW C & F
+
     let celsiusButtonT = document.querySelector(".celsiusT");
     let fahrenheitButtonT = document.querySelector(".fahrenheitT");
 

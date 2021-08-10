@@ -1,3 +1,11 @@
+/* html {
+  background-color: rgba(145, 144, 144, 0.555);
+}
+
+body {
+  background-color: rgba(192, 191, 191, 0.555);
+} */
+
 h1 {
   padding: 20px;
   padding-top: 0;
@@ -136,6 +144,8 @@ a:hover {
   margin: 0 auto;
   margin-top: 50px;
   border: 3px solid rgb(77, 76, 72);
+  border-radius: 9px;
+  /*border: 3px solid rgb(77, 76, 72); */
 }
 
 .forecast-container {
