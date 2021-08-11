@@ -420,7 +420,11 @@ function displayForecast() {
       `<div class="col day-container forecast-font">
                 ${day}
                 <p class="status-font">SUNNY</p>
-                <p class="emoji-size">☀</p>
+                <img
+                  src="http://openweathermap.org/img/wn/10d@2x.png"
+                  alt="Rain"
+                  id="forecast-icon"
+                />
                 <p class="forecast-temp-num">30°C</p>
                 <p class="status-font">HIGH</p>
                 <p class="forecast-temp-num">12°C</p>
