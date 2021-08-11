@@ -328,6 +328,7 @@ function displayCity(event) {
 
     let updateRainfall = document.querySelector(".tom-rainfall");
     updateRainfall.innerHTML = Math.trunc(data.data.list[0].pop * 100);
+    console.log(updateRainfall);
 
     let updateTomLowTemp = document.querySelector(".tom-low-temp");
     updateTomLowTemp.innerHTML = Math.round(data.data.list[0].main.temp_min);
@@ -395,3 +396,39 @@ function displayCity(event) {
 }
 
 citySearch.addEventListener("submit", displayCity);
+
+//DISPLAY FORECAST
+
+function displayForecast() {
+  let forecast = document.querySelector("#forecast");
+
+  let forecastHtml = `<div class="row">`; //Opened a div so need to close it to prevent errors
+
+  let days = [
+    "SUNDAY",
+    "MONDAY",
+    "TUESDAY",
+    "WEDNESDAY",
+    "THURSDAY",
+    "FRIDAY",
+    "SATURDAY",
+  ];
+
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `<div class="col day-container forecast-font">
+                ${day}
+                <p class="status-font">SUNNY</p>
+                <p class="emoji-size">☀</p>
+                <p class="forecast-temp-num">30°C</p>
+                <p class="status-font">HIGH</p>
+                <p class="forecast-temp-num">12°C</p>
+                <p class="status-font">LOW</p>
+        </div>`;
+  });
+  forecastHtml = forecastHtml + `</div>`; //Need to close the div opened at the beginning
+  forecast.innerHTML = forecastHtml;
+}
+
+displayForecast();
