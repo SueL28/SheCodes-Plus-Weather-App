@@ -209,6 +209,56 @@ if (currentHour < 10) {
   updateHour.innerHTML = currentHour;
 }
 
+//CONVERT TO AMERICAN STANDARD TIME
+
+if (currentHour === 13) {
+  updateHour.innerHTML = "01";
+}
+if (currentHour === 14) {
+  updateHour.innerHTML = "02";
+}
+if (currentHour === 15) {
+  updateHour.innerHTML = "03";
+}
+if (currentHour === 16) {
+  updateHour.innerHTML = "04";
+}
+if (currentHour === 17) {
+  updateHour.innerHTML = "05";
+}
+if (currentHour === 18) {
+  updateHour.innerHTML = "06";
+}
+if (currentHour === 19) {
+  updateHour.innerHTML = "07";
+}
+if (currentHour === 20) {
+  updateHour.innerHTML = "08";
+}
+if (currentHour === 21) {
+  updateHour.innerHTML = "09";
+}
+if (currentHour === 22) {
+  updateHour.innerHTML = "10";
+}
+if (currentHour === 23) {
+  updateHour.innerHTML = "11";
+}
+if (currentHour === 24) {
+  updateHour.innerHTML = "12";
+}
+
+function updateAmPm(hour) {
+  console.log(hour);
+  let amPm = document.querySelector(".am-pm");
+  if (hour < 12) {
+    amPm.innerHTML = "AM";
+  } else {
+    amPm.innerHTML = "PM";
+  }
+}
+updateAmPm(currentHour);
+
 let currentMinutes = currentDate.getMinutes();
 let updateMinutes = document.querySelector(".minutes");
 updateMinutes.innerHTML = currentMinutes;

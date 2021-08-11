@@ -255,6 +255,11 @@ a:hover {
   color: rgb(77, 76, 72);
 }
 
+.am-pm {
+  font-size: 30pt;
+  margin-left: -5px;
+}
+
 /*SEARCH BAR */
 
 .search-bar {
