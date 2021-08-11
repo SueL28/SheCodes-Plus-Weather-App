@@ -1,28 +1,21 @@
-console.log(axios);
-
 // GET LOCATION BUTTON FUNCTION
 
 function getCurrentLocation(response) {
-  console.log(response);
   let weatherApiKey = "a0ec055234934001bdc16c33f46f3ecb";
 
   let latitude = response.coords.latitude;
-  console.log(latitude);
   let longitude = response.coords.longitude;
   let units = "metric";
   let cnt = 8;
 
   let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=${units}`;
-  let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&cnt=${cnt}&units=${units}`;
-  console.log(weatherUrl);
-  console.log(forecastUrl);
+  let forecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&cnt=${cnt}&units=${units}`;
 
   //GET TEMP BASED ON COORDINATES
 
   //CURRENT TEMPS
 
   function getTemp(temp) {
-    console.log(temp);
     let updateCityName = document.querySelector(".cityNameC");
     updateCityName.innerHTML = temp.data.name;
 
@@ -43,10 +36,6 @@ function getCurrentLocation(response) {
     let updateWindSpeedCurr = document.querySelector(".wind-speed-curr");
     updateWindSpeedCurr.innerHTML = Math.round(temp.data.wind.speed);
 
-    let updateRainCurr = document.querySelector(".rain-curr");
-    updateRainCurr.innerHTML = Math.round(temp.data.clouds.all);
-    console.log(updateCurrWeatherFeels);
-
     let updateLowTempCurr = document.querySelector(".low-temp-curr");
     updateLowTempCurr.innerHTML = Math.round(temp.data.main.temp_min);
 
@@ -66,29 +55,31 @@ function getCurrentLocation(response) {
     //TOMORROW TEMPS FORECAST
 
     function getForecast(data) {
-      console.log(data);
+      //CURRENT RAIN HERE OTHER API DOESN'T HAVE RAIN
+      let updateRainCurr = document.querySelector(".rain-curr");
+      updateRainCurr.innerHTML = Math.trunc(data.data.hourly[0].pop * 100);
 
       let updateTomWeatherTemp = document.querySelector(".currentTempNumberT");
       updateTomWeatherTemp.innerHTML = `${Math.round(
-        data.data.list[0].main.temp
+        data.data.daily[0].temp.day
       )}°C`;
 
       let updateTomFeelsTemp = document.querySelector(".tom-Feel");
       updateTomFeelsTemp.innerHTML = `${Math.round(
-        data.data.list[0].main.feels_like
+        data.data.daily[0].feels_like.day
       )}°C`;
 
       let updateTomWindSpeed = document.querySelector(".tom-wind-speed");
-      updateTomWindSpeed.innerHTML = Math.round(data.data.list[0].wind.speed);
+      updateTomWindSpeed.innerHTML = Math.round(data.data.daily[0].wind_speed);
 
       let updateRainfall = document.querySelector(".tom-rainfall");
-      updateRainfall.innerHTML = Math.trunc(data.data.list[0].pop * 100);
+      updateRainfall.innerHTML = Math.trunc(data.data.daily[0].pop * 100);
 
       let updateTomLowTemp = document.querySelector(".tom-low-temp");
-      updateTomLowTemp.innerHTML = Math.round(data.data.list[0].main.temp_min);
+      updateTomLowTemp.innerHTML = Math.round(data.data.daily[0].temp.min);
 
       let updateTomHighTemp = document.querySelector(".tom-high-temp");
-      updateTomHighTemp.innerHTML = Math.round(data.data.list[0].main.temp_max);
+      updateTomHighTemp.innerHTML = Math.round(data.data.daily[0].temp.max);
 
       //TOMORROW C & F
       let celsiusButtonT = document.querySelector(".celsiusT");
@@ -146,10 +137,9 @@ function getCurrentLocation(response) {
 
   function emojiUpdateT(emoji) {
     let updateTomWeatherEmoji = document.querySelector("#tom-weather-emoji");
-    console.log(emoji.data.weather[0].main);
 
-    updateTomWeatherEmoji.innerHTML = emoji.data.weather[0].icon;
-    let updateEmojiIcon = emoji.data.weather[0].icon;
+    updateTomWeatherEmoji.innerHTML = emoji.data.daily[0].weather[0].icon;
+    let updateEmojiIcon = emoji.data.daily[0].weather[0].icon;
     updateTomWeatherEmoji.setAttribute(
       "src",
       `http://openweathermap.org/img/wn/${updateEmojiIcon}@2x.png`
@@ -159,7 +149,7 @@ function getCurrentLocation(response) {
   }
 
   axios.get(weatherUrl).then(emojiUpdate);
-  axios.get(weatherUrl).then(emojiUpdateT);
+  axios.get(forecastUrl).then(emojiUpdateT);
 }
 
 function updateWeather() {
@@ -228,7 +218,8 @@ if (currentMinutes < 10) {
   updateMinutes.innerHTML = currentMinutes;
 }
 
-//CHALLENGE 1
+//GET TEMP BASED ON SEARCH INPUT FIELD
+//SEARCH BAR
 
 let citySearch = document.querySelector("#city-search-bar");
 
@@ -239,7 +230,6 @@ function displayCity(event) {
 
   let inputCity = document.querySelector(".search-bar");
   let inputEntry = inputCity.value;
-  console.log(inputEntry);
 
   let updateCityNameC = document.querySelector(".cityNameC");
 
@@ -254,11 +244,93 @@ function displayCity(event) {
   let cnt = 7;
 
   let weatherSearchedUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputEntry}&appid=${weatherApiKeySearched}&units=${units}`;
-  let forecastSearchedUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${inputEntry}&appid=${weatherApiKeySearched}&units=${units}&cnt=${cnt}`;
-  console.log(weatherSearchedUrl);
-  console.log(forecastSearchedUrl);
 
-  //GET TEMP BASED ON SEARCH INPUT FIELD
+  //GETTING LAT AND LONG
+
+  function getLatLong(response) {
+    let weatherApiKeySearched = "a0ec055234934001bdc16c33f46f3ecb";
+    let latitude = response.data.coord.lat;
+    let longitude = response.data.coord.lon;
+    let units = "metric";
+    let cnt = 8;
+
+    let forecastSearchedUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${weatherApiKeySearched}&units=${units}&cnt=${cnt}`;
+
+    //GETTING FORECAST FOR THE NEXT FEW DAYS
+
+    function getTomorrowWeather(response) {
+      //UPDATE TOMORROW EMOJI ICON
+      let updateTomWeatherEmoji = document.querySelector("#tom-weather-emoji");
+
+      updateTomWeatherEmoji.innerHTML = response.data.daily[0].weather[0].icon;
+      let updateEmojiIcon = response.data.daily[0].weather[0].icon;
+      updateTomWeatherEmoji.setAttribute(
+        "src",
+        `http://openweathermap.org/img/wn/${updateEmojiIcon}@2x.png`
+      );
+
+      updateTomWeatherEmoji.setAttribute(
+        "alt",
+        response.data.daily[0].weather[0].main
+      );
+
+      //UPDATING CURRENT POP HERE AS OTHER API DOES NOT HAVE INFO
+      let updateRainCurr = document.querySelector(".rain-curr");
+      updateRainCurr.innerHTML = Math.trunc(response.data.hourly[0].pop * 100);
+
+      //UPDATING TOMORROW FACTORS IN WEATHER
+
+      let updateTomWeatherTemp = document.querySelector(".currentTempNumberT");
+      updateTomWeatherTemp.innerHTML = `${Math.round(
+        response.data.daily[0].temp.day
+      )}°C`;
+
+      let updateTomFeelsTemp = document.querySelector(".tom-Feel");
+      updateTomFeelsTemp.innerHTML = `${Math.round(
+        response.data.daily[0].feels_like.day
+      )}°C`;
+
+      let updateTomWindSpeed = document.querySelector(".tom-wind-speed");
+      updateTomWindSpeed.innerHTML = Math.round(
+        response.data.daily[0].wind_speed
+      );
+
+      let updateRainfall = document.querySelector(".tom-rainfall");
+      updateRainfall.innerHTML = Math.trunc(response.data.daily[0].pop * 100);
+
+      let updateTomLowTemp = document.querySelector(".tom-low-temp");
+      updateTomLowTemp.innerHTML = Math.round(response.data.daily[0].temp.min);
+
+      let updateTomHighTemp = document.querySelector(".tom-high-temp");
+      updateTomHighTemp.innerHTML = Math.round(response.data.daily[0].temp.max);
+
+      //TOMORROW C & F BUTTONS
+
+      let celsiusButtonT = document.querySelector(".celsiusT");
+      let fahrenheitButtonT = document.querySelector(".fahrenheitT");
+
+      function updateCelsiusT() {
+        let celsiusUpdateT = document.querySelector(".currentTempNumberT");
+        celsiusUpdateT.innerHTML = `${Math.round(
+          response.data.daily[0].temp.day
+        )}°C`;
+      }
+
+      function updateFahrenheitT() {
+        let fahrenheitUpdateT = document.querySelector(".currentTempNumberT");
+        let convertFahrenheitTemp =
+          Math.round(response.data.daily[0].temp.day) * 1.8 + 32;
+        fahrenheitUpdateT.innerHTML = `${Math.round(convertFahrenheitTemp)}°F`;
+      }
+
+      celsiusButtonT.addEventListener("click", updateCelsiusT);
+      fahrenheitButtonT.addEventListener("click", updateFahrenheitT);
+    }
+
+    axios.get(forecastSearchedUrl).then(getTomorrowWeather);
+  }
+
+  axios.get(weatherSearchedUrl).then(getLatLong);
 
   //CURRENT TEMPS
   function getTemp(temp) {
@@ -275,10 +347,6 @@ function displayCity(event) {
 
     let updateWindSpeedCurr = document.querySelector(".wind-speed-curr");
     updateWindSpeedCurr.innerHTML = Math.round(temp.data.wind.speed);
-
-    let updateRainCurr = document.querySelector(".rain-curr");
-    updateRainCurr.innerHTML = Math.round(temp.data.clouds.all);
-    console.log(updateCurrWeatherFeels);
 
     let updateLowTempCurr = document.querySelector(".low-temp-curr");
     updateLowTempCurr.innerHTML = Math.round(temp.data.main.temp_min);
@@ -308,59 +376,7 @@ function displayCity(event) {
 
   axios.get(weatherSearchedUrl).then(getTemp);
 
-  //TOMORROW TEMPS SEARCHED
-
-  function getTomTemps(data) {
-    console.log(data);
-
-    let updateTomWeatherTemp = document.querySelector(".currentTempNumberT");
-    updateTomWeatherTemp.innerHTML = `${Math.round(
-      data.data.list[0].main.temp
-    )}°C`;
-
-    let updateTomFeelsTemp = document.querySelector(".tom-Feel");
-    updateTomFeelsTemp.innerHTML = `${Math.round(
-      data.data.list[0].main.feels_like
-    )}°C`;
-
-    let updateTomWindSpeed = document.querySelector(".tom-wind-speed");
-    updateTomWindSpeed.innerHTML = Math.round(data.data.list[0].wind.speed);
-
-    let updateRainfall = document.querySelector(".tom-rainfall");
-    updateRainfall.innerHTML = Math.trunc(data.data.list[0].pop * 100);
-    console.log(updateRainfall);
-
-    let updateTomLowTemp = document.querySelector(".tom-low-temp");
-    updateTomLowTemp.innerHTML = Math.round(data.data.list[0].main.temp_min);
-
-    let updateTomHighTemp = document.querySelector(".tom-high-temp");
-    updateTomHighTemp.innerHTML = Math.round(data.data.list[0].main.temp_max);
-
-    //TOMORROW C & F BUTTONS
-
-    let celsiusButtonT = document.querySelector(".celsiusT");
-    let fahrenheitButtonT = document.querySelector(".fahrenheitT");
-
-    function updateCelsiusT() {
-      let celsiusUpdateT = document.querySelector(".currentTempNumberT");
-      celsiusUpdateT.innerHTML = `${Math.round(data.data.list[0].main.temp)}°C`;
-      console.log(celsiusUpdateT);
-    }
-
-    function updateFahrenheitT() {
-      let fahrenheitUpdateT = document.querySelector(".currentTempNumberT");
-      let convertFahrenheitTemp =
-        Math.round(data.data.list[0].main.temp) * 1.8 + 32;
-      fahrenheitUpdateT.innerHTML = `${Math.round(convertFahrenheitTemp)}°F`;
-    }
-
-    celsiusButtonT.addEventListener("click", updateCelsiusT);
-    fahrenheitButtonT.addEventListener("click", updateFahrenheitT);
-  }
-
-  axios.get(forecastSearchedUrl).then(getTomTemps);
-
-  //UPDATE CURRENT EMOJI WEATHER SEARCHED
+  //UPDATE CURRENT TEMP EMOJI ICON
 
   function emojiUpdate(emoji) {
     let updateCurrWeatherEmoji = document.querySelector("#curr-weather-emoji");
@@ -375,23 +391,6 @@ function displayCity(event) {
     updateCurrWeatherEmoji.setAttribute("alt", emoji.data.weather[0].main);
   }
 
-  //UPDATE EMOJI TO BE AUTO UPDATE WITH DATA IN API SEARCHED
-
-  function emojiUpdateT(emoji) {
-    let updateTomWeatherEmoji = document.querySelector("#tom-weather-emoji");
-    console.log(emoji.data.weather[0].main);
-
-    updateTomWeatherEmoji.innerHTML = emoji.data.weather[0].icon;
-    let updateEmojiIcon = emoji.data.weather[0].icon;
-    updateTomWeatherEmoji.setAttribute(
-      "src",
-      `http://openweathermap.org/img/wn/${updateEmojiIcon}@2x.png`
-    );
-
-    updateTomWeatherEmoji.setAttribute("alt", emoji.data.weather[0].main);
-  }
-
-  axios.get(weatherSearchedUrl).then(emojiUpdateT);
   axios.get(weatherSearchedUrl).then(emojiUpdate);
 }
 
