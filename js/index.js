@@ -81,6 +81,61 @@ function getCurrentLocation(response) {
       let updateTomHighTemp = document.querySelector(".tom-high-temp");
       updateTomHighTemp.innerHTML = Math.round(data.data.daily[0].temp.max);
 
+      // 7 DAY FORECAST FOR SEARCHED CITY
+
+      function formatWeekday(timestamp) {
+        let date = new Date(timestamp * 1000); //this is * 1000 because this is based off of a specific year API time was started
+
+        let day = date.getDay(); //converts timestamp number into a single digit that represents Sun - Sat from #0 - 6
+
+        let days = [
+          "SUNDAY",
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+        ];
+
+        return days[day]; //have the day index go through the days array created to match number to string
+      }
+
+      let forecast = document.querySelector("#forecast");
+
+      let forecastHtml = `<div class="row">`; //Opened a div so need to close it to prevent errors
+
+      let weatherForEachDay = data.data.daily;
+
+      weatherForEachDay.forEach(function (day, index) {
+        //index represents each forecastHTML value 0 - w.e number, can cap the index numbers to display only a specific number of forecastHTML
+        if (index < 7) {
+          forecastHtml =
+            forecastHtml +
+            `<div class="col day-container forecast-font">
+                    ${formatWeekday(day.dt)}
+                    <p class="status-font">${day.weather[0].main}</p>
+                    <img
+                    src="http://openweathermap.org/img/wn/${
+                      day.weather[0].icon
+                    }@2x.png"
+                    alt="Rain"
+                    id="forecast-icon"
+                    />
+                    <p class="forecast-temp-num">${Math.round(
+                      day.temp.max
+                    )}°C</p>
+                    <p class="status-font">HIGH</p>
+                    <p class="forecast-temp-num">${Math.round(
+                      day.temp.min
+                    )}°C</p>
+                    <p class="status-font">LOW</p>
+            </div>`;
+        }
+      });
+      forecastHtml = forecastHtml + `</div>`; //Need to close the div opened at the beginning
+      forecast.innerHTML = forecastHtml;
+
       //TOMORROW C & F
       let celsiusButtonT = document.querySelector(".celsiusT");
       let fahrenheitButtonT = document.querySelector(".fahrenheitT");
@@ -145,7 +200,10 @@ function getCurrentLocation(response) {
       `http://openweathermap.org/img/wn/${updateEmojiIcon}@2x.png`
     );
 
-    updateTomWeatherEmoji.setAttribute("alt", emoji.data.weather[0].main);
+    updateTomWeatherEmoji.setAttribute(
+      "alt",
+      emoji.data.daily[0].weather[0].main
+    );
   }
 
   axios.get(weatherUrl).then(emojiUpdate);
@@ -249,7 +307,6 @@ if (currentHour === 24) {
 }
 
 function updateAmPm(hour) {
-  console.log(hour);
   let amPm = document.querySelector(".am-pm");
   if (hour < 12) {
     amPm.innerHTML = "AM";
@@ -354,6 +411,61 @@ function displayCity(event) {
       let updateTomHighTemp = document.querySelector(".tom-high-temp");
       updateTomHighTemp.innerHTML = Math.round(response.data.daily[0].temp.max);
 
+      // 7 DAY FORECAST FOR SEARCHED CITY
+
+      function formatWeekday(timestamp) {
+        let date = new Date(timestamp * 1000); //this is * 1000 because this is based off of a specific year API time was started
+
+        let day = date.getDay(); //converts timestamp number into a single digit that represents Sun - Sat from #0 - 6
+
+        let days = [
+          "SUNDAY",
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+        ];
+
+        return days[day]; //have the day index go through the days array created to match number to string
+      }
+
+      let forecast = document.querySelector("#forecast");
+
+      let forecastHtml = `<div class="row">`; //Opened a div so need to close it to prevent errors
+
+      let weatherForEachDay = response.data.daily;
+
+      weatherForEachDay.forEach(function (day, index) {
+        //index represents each forecastHTML value 0 - w.e number, can cap the index numbers to display only a specific number of forecastHTML
+        if (index < 7) {
+          forecastHtml =
+            forecastHtml +
+            `<div class="col day-container forecast-font">
+                    ${formatWeekday(day.dt)}
+                    <p class="status-font">${day.weather[0].main}</p>
+                    <img
+                    src="http://openweathermap.org/img/wn/${
+                      day.weather[0].icon
+                    }@2x.png"
+                    alt="Rain"
+                    id="forecast-icon"
+                    />
+                    <p class="forecast-temp-num">${Math.round(
+                      day.temp.max
+                    )}°C</p>
+                    <p class="status-font">HIGH</p>
+                    <p class="forecast-temp-num">${Math.round(
+                      day.temp.min
+                    )}°C</p>
+                    <p class="status-font">LOW</p>
+            </div>`;
+        }
+      });
+      forecastHtml = forecastHtml + `</div>`; //Need to close the div opened at the beginning
+      forecast.innerHTML = forecastHtml;
+
       //TOMORROW C & F BUTTONS
 
       let celsiusButtonT = document.querySelector(".celsiusT");
@@ -446,7 +558,7 @@ function displayCity(event) {
 
 citySearch.addEventListener("submit", displayCity);
 
-//DISPLAY FORECAST
+/* //DISPLAY FORECAST
 
 function displayForecast() {
   let forecast = document.querySelector("#forecast");
@@ -484,4 +596,4 @@ function displayForecast() {
   forecast.innerHTML = forecastHtml;
 }
 
-displayForecast();
+displayForecast(); */
