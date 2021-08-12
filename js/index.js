@@ -42,16 +42,6 @@ function getCurrentLocation(response) {
     let updateHighTempCurr = document.querySelector(".high-temp-curr");
     updateHighTempCurr.innerHTML = Math.round(temp.data.main.temp_max);
 
-    //CONVERT C to F
-
-    let celsiusButton = document.querySelector(".celsius");
-    let fahrenheitButton = document.querySelector(".fahrenheit");
-
-    function updateCelsius() {
-      let celsiusUpdate = document.querySelector(".currentTempNumber");
-      celsiusUpdate.innerHTML = `${Math.round(temp.data.main.temp)}°C`;
-    }
-
     //TOMORROW TEMPS FORECAST
 
     function getForecast(data) {
@@ -135,39 +125,9 @@ function getCurrentLocation(response) {
       });
       forecastHtml = forecastHtml + `</div>`; //Need to close the div opened at the beginning
       forecast.innerHTML = forecastHtml;
-
-      //TOMORROW C & F
-      let celsiusButtonT = document.querySelector(".celsiusT");
-      let fahrenheitButtonT = document.querySelector(".fahrenheitT");
-
-      function updateCelsiusT() {
-        let celsiusUpdate = document.querySelector(".currentTempNumberT");
-        celsiusUpdate.innerHTML = `${Math.round(
-          data.data.list[0].main.temp
-        )}°C`;
-      }
-
-      function updateFahrenheitT() {
-        let fahrenheitUpdate = document.querySelector(".currentTempNumberT");
-        let convertFahrenheitTemp =
-          Math.round(data.data.list[0].main.temp) * 1.8 + 32;
-        fahrenheitUpdate.innerHTML = `${Math.round(convertFahrenheitTemp)}°F`;
-      }
-
-      celsiusButtonT.addEventListener("click", updateCelsiusT);
-      fahrenheitButtonT.addEventListener("click", updateFahrenheitT);
     }
 
     axios.get(forecastUrl).then(getForecast);
-
-    function updateFahrenheit() {
-      let fahrenheitUpdate = document.querySelector(".currentTempNumber");
-      let convertFahrenheitTemp = Math.round(temp.data.main.temp) * 1.8 + 32;
-      fahrenheitUpdate.innerHTML = `${Math.round(convertFahrenheitTemp)}°F`;
-    }
-
-    celsiusButton.addEventListener("click", updateCelsius);
-    fahrenheitButton.addEventListener("click", updateFahrenheit);
   }
 
   axios.get(weatherUrl).then(getTemp);
@@ -465,28 +425,6 @@ function displayCity(event) {
       });
       forecastHtml = forecastHtml + `</div>`; //Need to close the div opened at the beginning
       forecast.innerHTML = forecastHtml;
-
-      //TOMORROW C & F BUTTONS
-
-      let celsiusButtonT = document.querySelector(".celsiusT");
-      let fahrenheitButtonT = document.querySelector(".fahrenheitT");
-
-      function updateCelsiusT() {
-        let celsiusUpdateT = document.querySelector(".currentTempNumberT");
-        celsiusUpdateT.innerHTML = `${Math.round(
-          response.data.daily[0].temp.day
-        )}°C`;
-      }
-
-      function updateFahrenheitT() {
-        let fahrenheitUpdateT = document.querySelector(".currentTempNumberT");
-        let convertFahrenheitTemp =
-          Math.round(response.data.daily[0].temp.day) * 1.8 + 32;
-        fahrenheitUpdateT.innerHTML = `${Math.round(convertFahrenheitTemp)}°F`;
-      }
-
-      celsiusButtonT.addEventListener("click", updateCelsiusT);
-      fahrenheitButtonT.addEventListener("click", updateFahrenheitT);
     }
 
     axios.get(forecastSearchedUrl).then(getTomorrowWeather);
@@ -515,25 +453,6 @@ function displayCity(event) {
 
     let updateHighTempCurr = document.querySelector(".high-temp-curr");
     updateHighTempCurr.innerHTML = Math.round(temp.data.main.temp_max);
-
-    //CURRENT C & F BUTTONS
-
-    let celsiusButton = document.querySelector(".celsius");
-    let fahrenheitButton = document.querySelector(".fahrenheit");
-
-    function updateCelsius() {
-      let celsiusUpdate = document.querySelector(".currentTempNumber");
-      celsiusUpdate.innerHTML = `${Math.round(temp.data.main.temp)}°C`;
-    }
-
-    function updateFahrenheit() {
-      let fahrenheitUpdate = document.querySelector(".currentTempNumber");
-      let convertFahrenheitTemp = Math.round(temp.data.main.temp) * 1.8 + 32;
-      fahrenheitUpdate.innerHTML = `${Math.round(convertFahrenheitTemp)}°F`;
-    }
-
-    celsiusButton.addEventListener("click", updateCelsius);
-    fahrenheitButton.addEventListener("click", updateFahrenheit);
   }
 
   axios.get(weatherSearchedUrl).then(getTemp);
@@ -557,43 +476,3 @@ function displayCity(event) {
 }
 
 citySearch.addEventListener("submit", displayCity);
-
-/* //DISPLAY FORECAST
-
-function displayForecast() {
-  let forecast = document.querySelector("#forecast");
-
-  let forecastHtml = `<div class="row">`; //Opened a div so need to close it to prevent errors
-
-  let days = [
-    "SUNDAY",
-    "MONDAY",
-    "TUESDAY",
-    "WEDNESDAY",
-    "THURSDAY",
-    "FRIDAY",
-    "SATURDAY",
-  ];
-
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `<div class="col day-container forecast-font">
-                ${day}
-                <p class="status-font">SUNNY</p>
-                <img
-                  src="http://openweathermap.org/img/wn/10d@2x.png"
-                  alt="Rain"
-                  id="forecast-icon"
-                />
-                <p class="forecast-temp-num">30°C</p>
-                <p class="status-font">HIGH</p>
-                <p class="forecast-temp-num">12°C</p>
-                <p class="status-font">LOW</p>
-        </div>`;
-  });
-  forecastHtml = forecastHtml + `</div>`; //Need to close the div opened at the beginning
-  forecast.innerHTML = forecastHtml;
-}
-
-displayForecast(); */
