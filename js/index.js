@@ -229,6 +229,9 @@ if (currentHour < 10) {
 
 //CONVERT TO AMERICAN STANDARD TIME
 
+if (currentHour === "00") {
+  updateHour.innerHTML = "12";
+}
 if (currentHour === 13) {
   updateHour.innerHTML = "01";
 }
@@ -261,9 +264,6 @@ if (currentHour === 22) {
 }
 if (currentHour === 23) {
   updateHour.innerHTML = "11";
-}
-if (currentHour === 24) {
-  updateHour.innerHTML = "12";
 }
 
 function updateAmPm(hour) {
@@ -476,3 +476,25 @@ function displayCity(event) {
 }
 
 citySearch.addEventListener("submit", displayCity);
+
+//CHANGE BACKGROUND IMAGE
+function changeBackgroundTime() {
+  let date = new Date();
+  let hour = date.getHours();
+  let updateHourBg = document.querySelector(".hour");
+
+  if (hour <= 12 && hour >= 00) {
+    document.body.style.background =
+      "url('https://images.unsplash.com/photo-1557316998-6aafc678cd3c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80')";
+  }
+  if (hour <= 18 && hour >= 12) {
+    document.body.style.background =
+      "url('https://images.unsplash.com/photo-1524623243236-187b50e18f9f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2600&q=80')";
+  }
+  if (hour <= 23 && hour >= 18) {
+    document.body.style.background =
+      "url('https://images.unsplash.com/photo-1514669362126-0d8bb38261a3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80')";
+  }
+}
+
+changeBackgroundTime();
