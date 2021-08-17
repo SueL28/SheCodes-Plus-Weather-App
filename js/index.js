@@ -484,16 +484,13 @@ function changeBackgroundTime() {
   let updateHourBg = document.querySelector(".hour");
 
   if (hour <= 12 && hour >= 00) {
-    document.body.style.background =
-      "url('https://images.unsplash.com/photo-1557316998-6aafc678cd3c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80')";
+    document.body.style.background = "url('images/neutral-hills-mountain.jpg')";
   }
   if (hour <= 18 && hour >= 12) {
-    document.body.style.background =
-      "url('https://images.unsplash.com/photo-1524623243236-187b50e18f9f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2600&q=80')";
+    document.body.style.background = "url('images/afternoon-mountain.jpg')";
   }
   if (hour <= 23 && hour >= 18) {
-    document.body.style.background =
-      "url('https://images.unsplash.com/photo-1514669362126-0d8bb38261a3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80')";
+    document.body.style.background = "url('images/night-sky.jpg')";
   }
 }
 
