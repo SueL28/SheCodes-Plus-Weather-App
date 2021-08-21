@@ -39,7 +39,7 @@
       <header>
         <!--HEADER BEGIN-->
         <div class="row">
-          <div class="col current-time">
+          <div class="col-sm current-time">
             <h2 class="h2Line"></h2>
             <h1>
               <span class="hour"></span>:<span class="minutes"></span>
@@ -47,7 +47,7 @@
               <div class="weather-status"></div>
             </h1>
           </div>
-          <div class="col">
+          <div class="col-sm">
             <section>
               <form class="search-bar-container" id="city-search-bar">
                 <div class="row">
@@ -60,7 +60,7 @@
                       />
                     </div>
                   </div>
-                  <div class="col">
+                  <div class="col-sm">
                     <input type="submit" value="🔍" class="magnifying-glass" />
                     <button class="currentLocation">Current Location</button>
                   </div>
@@ -74,13 +74,13 @@
 
       <section>
         <div class="row">
-          <div class="col">
+          <div class="col-sm">
             <!--CURRENT TEMP BEGIN-->
             <h3 class="current-temp-header">
               Currently in <span class="cityNameC"></span>
             </h3>
             <div class="row">
-              <div class="col temp-number-curr curr">
+              <div class="col-sm temp-number-curr curr">
                 <span class="currentTempNumber">°C</span>
                 <img
                   src="http://openweathermap.org/img/wn/10d@2x.png"
@@ -90,7 +90,7 @@
                 <span class="tempSpacingUp"> </span>
               </div>
               <!--CURRENT TEMP NUMBER HERE-->
-              <div class="col feels-like-font">
+              <div class="col-sm feels-like-font">
                 Feels Like
                 <div class="row temp-number-curr currFeel">°C</div>
                 <!--FEELS LIKE CURRENT TEMP NUMBER HERE-->
@@ -100,57 +100,57 @@
             <!--ADDITIONAL WEATHER FACTOR NUMBERS-->
             <section class="factors-container">
               <div class="row">
-                <div class="col factor-label curr-wind-adjust">
+                <div class="col-sm factor-label curr-wind-adjust">
                   WIND 💨
                   <div class="row max-margins-variables">
                     <!--WIND MEASURES-->
                     <div
-                      class="col remove-padding measure-number wind-speed-curr"
+                      class="col-sm remove-padding measure-number wind-speed-curr"
                     ></div>
-                    <div class="col remove-padding measurement">
+                    <div class="col-sm remove-padding measurement">
                       NE
                       <br />
                       KM
                     </div>
                   </div>
                 </div>
-                <div class="col factor-label curr-pop-label-adjust">
+                <div class="col-sm factor-label curr-pop-label-adjust">
                   POP ☔
                   <div class="row max-margins-variables">
                     <div
-                      class="col remove-padding measure-number rain-curr"
+                      class="col-sm remove-padding measure-number rain-curr"
                     ></div>
-                    <div class="col remove-padding measurement">%</div>
+                    <div class="col-sm remove-padding measurement">%</div>
                   </div>
                 </div>
-                <div class="col factor-label curr-low-label-adjust">
+                <div class="col-sm factor-label curr-low-label-adjust">
                   LOW <i class="fas fa-thermometer-empty thermo-colour"></i>
                   <div class="row max-margins-variables">
                     <div
-                      class="col remove-padding measure-number low-temp-curr"
+                      class="col-sm remove-padding measure-number low-temp-curr"
                     ></div>
-                    <div class="col remove-padding measurement">°C</div>
+                    <div class="col-sm remove-padding measurement">°C</div>
                   </div>
                 </div>
-                <div class="col factor-label curr-high-label-adjust">
+                <div class="col-sm factor-label curr-high-label-adjust">
                   HIGH 🌡
                   <div class="row max-margins-variables">
                     <div
-                      class="col remove-padding measure-number high-temp-curr"
+                      class="col-sm remove-padding measure-number high-temp-curr"
                     ></div>
-                    <div class="col remove-padding measurement">°C</div>
+                    <div class="col-sm remove-padding measurement">°C</div>
                   </div>
                 </div>
               </div>
             </section>
           </div>
-          <div class="col">
+          <div class="col-sm">
             <!--TOMORROW TEMP BEGIN-->
             <h3 class="tomorrow-temp-header">
               Tomorrow in <span class="cityNameT"></span>
             </h3>
             <div class="row">
-              <div class="col temp-number-tom curr">
+              <div class="col-sm temp-number-tom curr">
                 <span class="currentTempNumberT">°C</span>
                 <img
                   src="http://openweathermap.org/img/wn/10d@2x.png"
@@ -160,7 +160,7 @@
                 <span class="tempSpacingUpTom"> </span>
               </div>
               <!--TOMORROW TEMP NUMBER HERE-->
-              <div class="col feels-like-font">
+              <div class="col-sm feels-like-font">
                 Feels Like
                 <div class="row temp-number-tom tom-Feel">°C</div>
                 <!--TOMORROW FEELS LIKE TEMP HERE-->
@@ -168,42 +168,42 @@
 
               <section class="factors-container">
                 <div class="row">
-                  <div class="col factor-label tom-label-adjust">
+                  <div class="col-sm factor-label tom-label-adjust">
                     WIND 💨
                     <div class="row max-margins-variables">
-                      <div class="col measure-number tom-wind-speed"></div>
-                      <div class="col measurement-tom">
+                      <div class="col-sm measure-number tom-wind-speed"></div>
+                      <div class="col-sm measurement-tom">
                         NE
                         <br />
                         KM
                       </div>
                     </div>
                   </div>
-                  <div class="col factor-label tom-pop-label-adjust">
+                  <div class="col-sm factor-label tom-pop-label-adjust">
                     POP ☔
                     <div class="row max-margins-variables">
                       <div
-                        class="col remove-padding measure-number tom-rainfall"
+                        class="col-sm remove-padding measure-number tom-rainfall"
                       ></div>
-                      <div class="col remove-padding measurement-tom">%</div>
+                      <div class="col-sm remove-padding measurement-tom">%</div>
                     </div>
                   </div>
-                  <div class="col factor-label tom-low-temp-adjust">
+                  <div class="col-sm factor-label tom-low-temp-adjust">
                     LOW <i class="fas fa-thermometer-empty thermo-colour"></i>
                     <div class="row max-margins-variables">
                       <div
-                        class="col remove-padding measure-number tom-low-temp"
+                        class="col-sm remove-padding measure-number tom-low-temp"
                       ></div>
-                      <div class="col remove-padding measurement-tom">°C</div>
+                      <div class="col-sm remove-padding measurement-tom">°C</div>
                     </div>
                   </div>
-                  <div class="col factor-label tom-high-label-adjust">
+                  <div class="col-sm factor-label tom-high-label-adjust">
                     HIGH 🌡
                     <div class="row max-margins-variables">
                       <div
-                        class="col remove-padding measure-number tom-high-temp"
+                        class="col-sm remove-padding measure-number tom-high-temp"
                       ></div>
-                      <div class="col remove-padding measurement-tom">°C</div>
+                      <div class="col-sm remove-padding measurement-tom">°C</div>
                     </div>
                   </div>
                 </div>

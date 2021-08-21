@@ -102,7 +102,7 @@ function getCurrentLocation(response) {
         if (index < 7) {
           forecastHtml =
             forecastHtml +
-            `<div class="col day-container forecast-font">
+            `<div class="col-sm day-container forecast-font">
                     ${formatWeekday(day.dt)}
                     <p class="status-font">${day.weather[0].main}</p>
                     <img
