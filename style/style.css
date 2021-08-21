@@ -442,9 +442,19 @@ a:hover {
     margin: 0 auto;
   }
 
+  .wind-speed-curr{
+    display: flex;
+    justify-content: center;
+  }
+
   .curr-pop-label-adjust{
     display: block;
     margin: 0 auto;
+  }
+
+  .rain-curr{
+    display: flex;
+    justify-content: center;
   }
   
   .curr-low-label-adjust{
@@ -452,9 +462,19 @@ a:hover {
     margin: 0 auto;
   }
 
+  .low-temp-curr{
+    display: flex;
+    justify-content: center;
+  }
+
   .curr-high-label-adjust{
     display: block;
     margin: 0 auto;
+  }
+
+  .high-temp-curr{
+    display: flex;
+    justify-content: center;
   }
 
   .currentTempNumberT{
@@ -468,13 +488,18 @@ a:hover {
   }
 
   .measurement-tom{
-    display: block;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center
   }
 
   .tom-label-adjust{
     display: block;
     margin: 0 auto;
+  }
+
+  .tom-wind-speed{
+    display: flex;
+    justify-content: center;
   }
 
   .tom-pop-label-adjust{
@@ -624,3 +649,11 @@ a:hover {
     margin-left: -10px;
   }
 }
+
+@media(max-widht:1024px){
+
+
+  .magnifying-glass{
+    font-size: 35pt;
+  }
+  }
