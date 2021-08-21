@@ -387,7 +387,9 @@ a:hover {
   margin-left: 7px;
 }
 
-@media (max-width:360px){
+@media (max-width:576px){
+
+  
   h1{
     font-size: 40pt;
   }
@@ -401,136 +403,49 @@ a:hover {
     
   }
 
-  .search-bar-container{
-    padding-top: 0;
-  }
-
   .search-bar{
-    max-width: 250px;
-    padding: 10px;
-  }
-  
-  .magnifying-glass{
-    margin: 0 auto;
-    display: flex;
-    font-size: 20pt;
-    padding: 10px;
-    margin-bottom: 30px;
+    padding: 5px;
+    height: auto;
   }
 
-  .currentLocation{
-    margin: 0 auto;
-    display: flex;
-  }
+.location-button{
+  font-size: 20pt;
+}
 
-  .currentTempNumber{
-    font-size: 30pt;
-  }
+.current-temp-header{
+  margin-top: 20px;
+
+}
+
+.currentTempNumber{
+  margin-left: -40px;
+}
+
+.currFeel{
+  font-size: 20pt;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
 
   .feels-like-font{
-    margin-top: 30px;
     text-align: center;
+    margin-top: 50px;
   }
 
-  .temp-number-curr{
-    margin: 0 auto;
-    justify-content: center;
-  }
-
-  .measurement{
+  .curr-wind-adjust{
     display: block;
-    margin: 0 auto;
+    
   }
 
   .wind-speed-curr{
-    display: flex;
-    justify-content: center;
-  }
 
-  .curr-pop-label-adjust{
-    display: block;
-    margin: 0 auto;
-  }
-
-  .rain-curr{
-    display: flex;
-    justify-content: center;
-  }
-  
-  .curr-low-label-adjust{
-    display: block;
-    margin: 0 auto;
-  }
-
-  .low-temp-curr{
-    display: flex;
-    justify-content: center;
-  }
-
-  .curr-high-label-adjust{
-    display: block;
-    margin: 0 auto;
-  }
-
-  .high-temp-curr{
-    display: flex;
-    justify-content: center;
-  }
-
-  .currentTempNumberT{
-    font-size: 30pt;
-  }
-
-  .temp-number-tom{
-    text-align: center;
-    display: block;
-    margin: 0 auto;
-  }
-
-  .tom-label-adjust{
-    padding: 0;
-  }
-
-  .adjustments-sm{
-    display: flex;
-    justify-content: center;
-    margin-left: 50px;
-  }
-
-  .measurement-tom{
-   margin-left: 30px;
-  }
-
-  .tom-label-adjust{
-    display: block;
-    margin: 0 auto;
-  }
-
-  .tom-wind-speed{
-    display: flex;
-    justify-content: center;
-
-  }
-
-  .tom-pop-label-adjust{
-    display: block;
-    margin: 0 auto;
-
-  }
-
-  .tom-low-temp-adjust{
-    display: block;
-    margin: 0 auto;
-  }
-  .tom-high-label-adjust{
-    display: block;
-    margin: 0 auto;
   }
 
 
 }
 
-@media(max-width:768px){
+@media(max-width:800px){
    h2{
      font-size: 22pt;
    }
