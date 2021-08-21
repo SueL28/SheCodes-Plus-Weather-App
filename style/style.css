@@ -487,9 +487,18 @@ a:hover {
     margin: 0 auto;
   }
 
-  .measurement-tom{
+  .tom-label-adjust{
+    padding: 0;
+  }
+
+  .adjustments-sm{
     display: flex;
-    justify-content: center
+    justify-content: center;
+    margin-left: 50px;
+  }
+
+  .measurement-tom{
+   margin-left: 30px;
   }
 
   .tom-label-adjust{
@@ -500,6 +509,7 @@ a:hover {
   .tom-wind-speed{
     display: flex;
     justify-content: center;
+
   }
 
   .tom-pop-label-adjust{
